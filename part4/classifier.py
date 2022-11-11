@@ -6,15 +6,18 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
+from sklearn.metrics import r2_score
 
 # LOAD DATASET
 inputs = np.load('inputs.npy')
-outputs = np.load('labels.npy').flatten()
+outputs = [int(x) for x in np.load('labels.npy')]
 
 DATASET_SIZE = len(inputs)
 TRAIN_SIZE = int(DATASET_SIZE * 0.75)
 TEST_SIZE = int(DATASET_SIZE * 0.25)
 
+print(inputs)
+print(outputs)
 print('INPUTS SHAPE', np.shape(inputs))
 print('LABELS SHAPE', np.shape(outputs))
 
@@ -46,5 +49,5 @@ res = logreg_clf.predict(test_data)
 res2 = m2.predict(test_data)
 
 print()
-print('MODEL MEAN ACCURACY', accuracy_score(test_labels, res) * 100, '%')
-print('MODEL2 MEAN ACCURACY', accuracy_score(test_labels, res2) * 100, '%')
+print('MODEL R2 SCORE', r2_score(test_labels, res))
+print('MODEL2 R2 SCORE', r2_score(test_labels, res2))
