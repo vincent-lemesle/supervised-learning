@@ -11,6 +11,9 @@ from sklearn.svm import SVC
 inputs = np.load('inputs.npy')
 outputs = np.load('labels.npy').flatten()
 
+print(inputs[0])
+print(inputs[1])
+print(inputs[2])
 DATASET_SIZE = len(inputs)
 TRAIN_SIZE = int(DATASET_SIZE * 0.75)
 TEST_SIZE = int(DATASET_SIZE * 0.25)
@@ -33,10 +36,12 @@ test_labels = outputs[TRAIN_SIZE:]
 # MODEL DEFINITION
 logreg_clf = LogisticRegression()
 m2 = KNeighborsClassifier()
+m3 = DecisionTreeClassifier()
 # MODEL TRAINING
 print('MODEL TRAINING...')
 logreg_clf.fit(train_data, train_labels)
 m2.fit(train_data, train_labels)
+m3.fit(train_data, train_labels)
 
 # MODEL TESTING
 print()
@@ -44,7 +49,9 @@ print('TEST SHAPE', np.shape(test_data))
 print('MODEL TESTING...')
 res = logreg_clf.predict(test_data)
 res2 = m2.predict(test_data)
+res3 = m3.predict(test_data)
 
 print()
 print('MODEL MEAN ACCURACY', accuracy_score(test_labels, res) * 100, '%')
 print('MODEL2 MEAN ACCURACY', accuracy_score(test_labels, res2) * 100, '%')
+print('MODEL3 MEAN ACCURACY', accuracy_score(test_labels, res3) * 100, '%')
