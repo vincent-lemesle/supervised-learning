@@ -13,14 +13,14 @@ from sklearn.svm import SVC
 inputs = np.load('inputs.npy')
 outputs = np.load('labels.npy').flatten()
 
-#plt.scatter(x, y, s=area, c=colors, alpha=0.5)
-#plt.show()
+# plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+# plt.show()
+
 
 def getInputColor(label):
     if label == 1:
         return "blue"
     return "red"
-
 
 
 def plotData():
@@ -32,7 +32,6 @@ def plotData():
         for j in range(10):
             plt.scatter(j, inputs[i][j], c=getInputColor(outputs[i]))
     plt.show()
-
 
 
 # plotData()
@@ -49,33 +48,39 @@ print('DATASET SIZE', DATASET_SIZE)
 print('TRAIN SIZE', TRAIN_SIZE)
 print('TEST SIZE', TEST_SIZE)
 
+# FOR ALGO 1
+
 
 def getUsefullData(inputs):
     return [inputs[0],
-            inputs[1],
             inputs[2],
+            inputs[3],
+            inputs[4],
             inputs[7],
             inputs[8],
+            inputs[10],
             inputs[13],
+            inputs[17],
+            inputs[23],
             inputs[24],
-            inputs[25],
             inputs[26],
             inputs[28],
-            inputs[29],
             inputs[32],
-            inputs[33],
-            inputs[34],
             inputs[36],
             inputs[40],
+            inputs[41],
             inputs[45],
             inputs[49],
             inputs[52],
             inputs[53],
-            inputs[56]]
+            inputs[54],
+            inputs[55],
+            inputs[56],
+            inputs[59]]
 
 
 train_data = [getUsefullData(i) for i in inputs[:TRAIN_SIZE]]
-train_labels = outputs[:TRAIN_SIZE]
+train_labels = outputs[: TRAIN_SIZE]
 
 print()
 print('TRAIN SHAPE', np.shape(train_data))
