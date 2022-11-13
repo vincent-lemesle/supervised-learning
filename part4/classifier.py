@@ -9,7 +9,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import r2_score
-import matplotlib.pyplot as plt
 
 def getOutputCategory(o):
     if o > 40:
