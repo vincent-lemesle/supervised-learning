@@ -9,6 +9,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
 
 def getOutputCategory(o):
     if o > 40:
@@ -44,7 +45,7 @@ def plotData():
     plt.show()
 
 
-plotData()
+#plotData()
 # plotData()
 print(outputs)
 
@@ -65,7 +66,11 @@ def plotData():
 
 
 # plotData()
+# outputs = np.load('labels.npy')
+outputs = [int(x[0]) for x in np.load('labels.npy')]
 
+print(inputs)
+print(outputs)
 DATASET_SIZE = len(inputs)
 TRAIN_SIZE = int(DATASET_SIZE * 0.85)
 TEST_SIZE = int(DATASET_SIZE * 0.15)
@@ -96,7 +101,7 @@ m6 = SVC()
 print('MODEL TRAINING...')
 logreg_clf.fit(train_data, train_labels)
 m2.fit(train_data, train_labels)
-m3.fit(train_data, train_labels)
+# m3.fit(train_data, train_labels)
 m4.fit(train_data, train_labels)
 m5.fit(train_data, train_labels)
 m6.fit(train_data, train_labels)
@@ -107,7 +112,7 @@ print('TEST SHAPE', np.shape(test_data))
 print('MODEL TESTING...')
 res = logreg_clf.predict(test_data)
 res2 = m2.predict(test_data)
-res3 = m3.predict(test_data)
+# res3 = m3.predict(test_data)
 res4 = m4.predict(test_data)
 res5 = m5.predict(test_data)
 res6 = m6.predict(test_data)
@@ -119,3 +124,27 @@ print('MODEL3 R2 SCORE', r2_score(test_labels, res3))
 print('MODEL4 R2 SCORE', r2_score(test_labels, res4))
 print('MODEL5 R2 SCORE', r2_score(test_labels, res5))
 print('MODEL6 R2 SCORE', r2_score(test_labels, res6))
+# print('MODEL R2 SCORE', r2_score(test_labels, res))
+print('MODEL2 R2 SCORE', accuracy_score(test_labels, res2))
+# print('MODEL3 R2 SCORE', r2_score(test_labels, res3))
+print('MODEL4 R2 SCORE', accuracy_score(test_labels, res4))
+print('MODEL5 R2 SCORE', accuracy_score(test_labels, res5))
+print('MODEL6 R2 SCORE', accuracy_score(test_labels, res6))
+
+def getInputColor(label):
+    if label == 1:
+        return "blue"
+    return "red"
+
+
+def plotData():
+    x = np.arange(0, 100, 1)
+    y = np.arange(0, 100, 1)
+    plt.xticks(x)
+    plt.yticks(y)
+    for i in range(200):
+        for j in range(100):
+            plt.scatter(j, inputs[i][j], c=getInputColor(outputs[i]))
+    plt.show()
+
+# plotData()
