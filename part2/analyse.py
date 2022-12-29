@@ -56,5 +56,5 @@ with open('dataset.csv', 'r') as read_obj:
 
     # visualize the graph
     dot.attr(label=f"threshold {threshold}", fontsize="20")
-    graph_name = f"images/complex_data_threshold_{threshold}"
+    graph_name = f"images/data_threshold_{threshold}"
     dot.render(graph_name)
